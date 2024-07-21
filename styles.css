@@ -162,11 +162,12 @@ nav{
     display: block;
     position: fixed;
     bottom: 0;
+    left: 0;
     margin-top: 50px;
-    height: 120px;
+    height: 50px;
     width: 100%;
     background-color: var(--nav-header-color);
-    padding: 3px;
+    padding: 1px;
     padding-bottom: 20px;
 }
 
@@ -178,16 +179,29 @@ nav > ul{
     align-items: center;
     align-content: center;
     justify-content: space-between;
-    width: 82%;
+    width: 99%;
+    height: 100%;
+    position: relative;
+    left: -50;
+    padding-left: 0;
+    
+}
+
+nav > ul > li{
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
 }
 
 .button-nav{
     
     width: 70px;
     height: 70px;
-    background-color: #004b23;
+    background-color: transparent;
     color: aliceblue;
     font-size: 20px;
+    border: none;
 }
 
 main{
@@ -317,4 +331,16 @@ hr{
     font-size: 20px;
     padding: 5px;
     width: fit-content;
+}
+
+
+@media (max-width: 425px) {
+
+    .button-nav{
+    
+        width: 65px;
+        height: 60px;
+        font-size: 23px;
+        padding: 3px;
+    }
 }
