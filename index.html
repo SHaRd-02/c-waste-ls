@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>C-waste LocalHost</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1f3623">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kode+Mono:wght@400..700&family=Libre+Barcode+39+Text&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Workbench&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div id="top-bar">
+        <h1 class="center"><i class="fa-solid fa-recycle fa-sm"> </i> <span style="color: black; font-size: 70px;">C</span><span style="color: #4633d1;">-</span>waste</h1>
+    </div>
+
+    <div id="signUpAndLogin" class="">
+        <h2 class="center" id="headerSignup">Create an account!</h2>
+
+        <input type="text" placeholder="Full Name" class="login-input" id="full-name">
+        <input type="email" id="email" placeholder="Email" class="login-input">
+        <input type="password" id="password" placeholder="Password" class="login-input">
+
+        <button id="buttonSignup" class="login-input">Sign-up</button>
+        <button id="buttonLogin" class="login-input hidden">Login</button>
+
+        
+        <div id="loginText"><p class="center">Already have an account? <button id="buttonShowLogin">Login</button> then</p></div>
+        <div id="signupText" class="hidden"><p class="center">Don't have an account? <button id="buttonShowSignup">Sign-up</button> then</p></div>
+        <button id="buttonGoogle" class="center"><i class="fa-brands fa-google fa-xl" style="color: #4633d1;"></i>  Sign in with Google</button>
+        
+        
+    </div>
+
+    <main class="hidden" id="main">
+        
+        <div id="profile" class="hidden">
+            <h2 class="center" id="profile-head">Profile</h2>
+            <div id="profile-logo" class="center"><br><i class="fa-solid fa-circle-user fa-2xl icons-color"></i></div>
+            <h3 class="center" id="name-head">Name: </h3><i id="userName" class="center"></i>
+            <h3 class="center" id="email-head">Email: </h3><i id="userEmail" class="center"></i>
+            <hr>
+            <h4 class="center" id="social-head">Follow us on Social Media:</h4>
+            <a href="https://www.instagram.com/cwastemx/" class="social-links center"><i class="fa-brands fa-instagram fa-xl icons-cozlor"></i> Instagram</a>
+            <hr>
+            <div id="languageSelector">
+                <h3 class="center" id="lang-head">Select the language</h3>
+                <button onclick="" class="center lang-btn" id="english-button">English</button>
+                <button onclick="" class="center lang-btn" id="spanish-button">Español</button>
+            </div>
+            <hr>
+            <button id="logout" class="">Logout <i class="fa-solid fa-right-to-bracket" style="color: #ededed;"></i></button>
+        </div>
+
+        <div id="tasks" class="hidden">
+            <h2 class="center" id="tasks-head">Tasks</h2>
+            <h3 class="center" id="tasks-text">Here are your daily tasks</h3>
+            <ul id="tasks-list" class="challenges-list">
+                <li>Task1 
+                    
+                    <progress max="100" min="0">20%</progress>
+                    <details class="details-list">
+                        <summary>Details</summary>
+                        <p>Clean your backyard of any plastics.</p>
+                    </details>
+                </li>
+                <li>Task2 <progress max="100" min="0">20%</progress></li>
+                <li>Task3 <progress max="100" min="0">20%</progress></li>
+                <li>Task4 <progress max="100" min="0">20%</progress></li>
+                <li>Task5 <progress max="100" min="0">20%</progress></li>
+                <li>Task6 <progress max="100" min="0">20%</progress></li>
+                <li>Task4 <progress max="100" min="0">20%</progress></li>
+                <li>Task4 <progress max="100" min="0">20%</progress></li>
+                <li>Task4 <progress max="100" min="0">20%</progress></li>
+                <li>Task4 <progress max="100" min="0">20%</progress></li>
+            </ul>
+              
+        </div>
+
+        <div id="challenges" class="hidden">
+            <h2 class="center" id="challenges-head">Challenges</h2>
+            <section id="date-time-section" class="center">
+                <p class="center"><i class="fa-regular fa-calendar fa-xl icons-color"> </i> <i id="dateDisplay"></i> <i class="fa-solid fa-clock fa-xl icons-color">  </i> <i id="timeDisplay"></i></p>
+                
+            </section>
+            <ul id="challenges-list" class="challenges-list" >
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+                <li>Challenge1 <progress max="100" min="0">20%</progress></li>
+            </ul>
+            <hr>
+            <button class="center" id="add-challenge-button">Add a Challenge</button>
+        </div>
+
+        <div id="info" class="">
+            <h2 class="center">Info</h2>
+            <h3 id="r5-head">What are the 5R's?</h3>
+            <p class="general-para" id="r5-info">The five R's: reduce, reuse, recycle, rethink, and refuse are a great way to implement small changes into your daily life and live more environmentally friendly and conscious.</p>
+            <div style="background-color: #162812;">
+                <details>
+                    <summary id="reduce-summary">Reduce</summary>
+                    <p id="reduce-text"> Reduce means to minimize the amount of waste we create. Here are some easy ways to reduce your waste.</p>
+                    
+                </details>
+                
+            </div>
+    
+            <div style="background-color: #6b7050;">
+                <details>
+                    <summary id="reuse-summary">Reuse</summary>
+                    <p id="reuse-text"> Reuse refers to using items more once. Here are some things you might not have considered to reuse</p>
+                    
+                </details>
+                
+            </div>
+    
+            <div style="background-color: #e4d8c4;">
+                <details>
+                    <summary id="recycle-summary">Recycle</summary>
+                    <p id="recycle-text"> Recycling means putting a product to a new use instead of throwing it away.</p>
+                    
+                </details>
+                
+            </div>
+            
+            <div style="background-color: #bcb195;">
+                <details>
+                    <summary id="rethink-summary">Rethink</summary>
+                    <p id="rethink-text"> Rethink is a more general term that just means to rethink your consumption habits to minimize waste. Here some things to think about to help you live a lifestyle that supports a sustainable future.</p>
+                    
+                </details>
+                
+            </div>
+    
+            <div style="background-color: #8f8554;">
+                <details>
+                    <summary id="refuse-summary">Refuse</summary>
+                    <p id="refuse-text"> Refuse refers to the act of refusing items that don’t help you commit to a sustainable future. </p>
+                    
+                </details>
+                
+            </div>
+        </div>
+
+        
+        
+    </main>
+
+        <nav class="hidden" id="navbar">
+            <ul>
+                <li id="profile-nav">
+                    <button class="button-nav" id="profile-button"><i class="fa-solid fa-user fa-2xl" style="color: #e4d8c4;"></i></button>
+                    <p class="center">Profile</p>
+                </li>
+                <li id="challenges-nav">
+                    <button class="button-nav" id="challenges-button"><i class="fa-solid fa-rocket fa-2xl " style="color: #e4d8c4;"></i></button>
+                    <p class="center">Challenges</p>
+                </li>
+                <li id="tasks-nav">
+                    <button class="button-nav" id="tasks-button"><i class="fa-solid fa-flag-checkered fa-2xl" style="color: #e4d8c4;"></i></i></button>
+                    <p class="center">Tasks</p>
+                </li>
+                <li id="info-nav">
+                    <button class="button-nav" id="info-button"><i class="fa-solid fa-book fa-2xl" style="color: #e4d8c4;"></i></button>
+                    <p class="center">Info</p>
+                </li>
+            </ul>
+        </nav>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDompZeqEjtsXToS_GOZctXolaMzHVr_m0",
+          authDomain: "todo-1d7d0.firebaseapp.com",
+          projectId: "todo-1d7d0",
+          storageBucket: "todo-1d7d0.appspot.com",
+          messagingSenderId: "5039375976",
+          appId: "1:5039375976:web:1b61e5b9c5e0937e701ddd"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      </script>
+    <script type="module" src="./app.js"></script>
+    <script type="module" src="./firestore.js"></script>
+    <script src="https://kit.fontawesome.com/636eeb4dc2.js" crossorigin="anonymous"></script>
+</body>
+</html>
