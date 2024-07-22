@@ -137,6 +137,7 @@ h1{
 
 h2{
     font-size: 30px;
+    padding: 20px;
 }
 
 
@@ -273,7 +274,7 @@ hr{
 
 .challenges-list {
     width: 80%;
-    height: 270px;
+    height: 370px;
     border: solid 1px aliceblue;
     border-radius: 20px;
     overflow: scroll;
@@ -334,13 +335,17 @@ hr{
 }
 
 
-@media (max-width: 425px) {
+@media (max-width: 525px) {
 
     .button-nav{
     
-        width: 65px;
+        width: 60px;
         height: 60px;
-        font-size: 23px;
+        font-size: 20px;
         padding: 3px;
+    }
+
+    .challenges-list{
+        width: 95%;
     }
 }
