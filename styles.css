@@ -244,7 +244,7 @@ hr{
     margin: 20px auto;
     list-style-type: none;
     padding: 0;
-    background-color: cadetblue;
+    background-color: #AABD8c;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -260,10 +260,12 @@ hr{
 
 .challenges-list > li{
     font-size: 25px;
-    border: solid 1px aliceblue;
-    background-color: cadetblue;
+    border-top: solid 1px gray;
+    border-bottom: solid 1px gray;
+    background-color: #AABD8c;
     width: 92%;
     padding: 10px;
+    margin-left: 10px;
 }
 
 .challenges-list > li > progress{
