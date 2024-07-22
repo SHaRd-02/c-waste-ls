@@ -4,7 +4,6 @@ const urlsToCache = [
     '/index.html',
     '/styles.css',
     '/app.js',
-    '/firestore.js',
     '/manifest.json'
     // Add more URLs to cache as needed
 ];

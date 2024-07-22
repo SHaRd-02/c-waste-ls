@@ -1,13 +1,5 @@
-//import { challenges } from "./challenges";
-
-const buttonShowLogin = document.getElementById('buttonShowLogin');
-const buttonShowSignup = document.getElementById('buttonShowSignup');
-const headerSignup = document.getElementById('headerSignup');
-const loginText = document.getElementById('loginText');
-const signupText = document.getElementById('signupText');
-const buttonSignup = document.getElementById('buttonSignup');
-const buttonLogin = document.getElementById('buttonLogin');
-const userNameElement = document.getElementById('userName');
+import { challenges } from "./challenges.js";
+// DOM variables
 const profileElement = document.getElementById('profile');
 const challengesElement = document.getElementById('challenges');
 const tasksElement = document.getElementById('tasks');
@@ -16,9 +8,21 @@ const profileButton = document.getElementById('profile-button');
 const challengesButton = document.getElementById('challenges-button');
 const tasksButton = document.getElementById('tasks-button');
 const infoButton = document.getElementById('info-button');
-const fullNameElement = document.getElementById('full-name');
 const englishButton = document.getElementById('english-button');
 const spanishButton = document.getElementById('spanish-button');
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const userInfoDialog = document.getElementById("user-info-dialog");
+const dialogInfoBtn = document.getElementById("info-done-btn");
+const nameElement = document.getElementById("userName");
+const emailElement = document.getElementById("userEmail");
+const noUserInfo = document.getAnimations("no-user-info");
+
+// local storage variables
+const language = localStorage.getItem("language");
+const username = localStorage.getItem("name");
+const email = localStorage.getItem("email");
+console.log(username, email)
 
 
 
@@ -108,7 +112,7 @@ const translations = {
 };
 
 
-const language = localStorage.getItem("language");
+
 if (language){
     setLanguage(language);
 }
@@ -116,23 +120,17 @@ else{
     setLanguage('en');
 }
 
-function showLogin() {
-    headerSignup.innerText = "Please Login";
-    loginText.classList.add("hidden");
-    signupText.classList.remove("hidden");
-    buttonSignup.classList.add("hidden");
-    buttonLogin.classList.remove("hidden");
-    fullNameElement.classList.add("hidden");
+if ( !username || !email){
+    userInfoDialog.showModal();
+}
+else{
+    nameElement.innerText = username;
+    emailElement.innerText = email;
 }
 
-function showSignup() {
-    headerSignup.innerText = "Create an account!";
-    loginText.classList.remove("hidden");
-    signupText.classList.add("hidden");
-    buttonSignup.classList.remove("hidden");
-    buttonLogin.classList.add("hidden");
-    fullNameElement.classList.remove("hidden");
-}
+
+
+
 
 function profileShow(){
     profileElement.classList.remove('hidden');
@@ -186,10 +184,9 @@ function updateDateTime() {
     const now = new Date();
 
     // Options for the date formatting
-    const dateOptions = { 
-        weekday: 'long', 
+    const dateOptions = {  
         year: 'numeric', 
-        month: 'long', 
+        month: 'numeric', 
         day: 'numeric' 
     };
     
@@ -214,20 +211,7 @@ function setLanguage(lang) {
 function loadTranslations(lang) {
     const currentTranslations = translations[lang];
 
-    document.getElementById('headerSignup').textContent = currentTranslations.create_account;
-    document.getElementById('full-name').placeholder = currentTranslations.full_name;
-    document.getElementById('email').placeholder = currentTranslations.email;
-    document.getElementById('password').placeholder = currentTranslations.password;
-    document.getElementById('buttonSignup').textContent = currentTranslations.sign_up;
-    document.getElementById('buttonLogin').textContent = currentTranslations.login;
-    document.getElementById('loginText').innerHTML = `<p class="center">${currentTranslations.already_have_account} <button id="buttonShowLogin">${currentTranslations.login}</button> then</p>`;
-    document.getElementById('buttonGoogle').innerHTML = `<i class="fa-brands fa-google fa-xl" style="color: #4633d1;"></i>  ${currentTranslations.sign_in_google}`;
-    //document.querySelector('#profile-nav p').textContent = currentTranslations.profile;
-    //document.querySelector('#tasks-nav p').textContent = currentTranslations.tasks;
-    //document.querySelector('#challenges-nav p').textContent = currentTranslations.challenges;
-    //document.querySelector('#info-nav p').textContent = currentTranslations.info;
-    document.getElementById('logout').innerHTML = `${currentTranslations.logout} <i class="fa-solid fa-right-to-bracket" style="color: #ededed;"></i>`;
-    
+   
     document.getElementById('profile-head').innerText=currentTranslations.profile_head;
     document.getElementById('lang-head').innerText = currentTranslations.lang_head;
     document.getElementById('social-head').innerText = currentTranslations.social_head;
@@ -255,6 +239,17 @@ function loadTranslations(lang) {
     document.getElementById('tasks-text').innerText=currentTranslations.tasks_text;
 }
 
+function setNameEmail(){
+    if (nameInput.value ==="" && emailInput.value === ""){
+        noUserInfo.innerText = "Please fill the input fields!!!";
+    }else{
+        localStorage.setItem("name", nameInput.value);
+        localStorage.setItem("email", emailInput.value);
+        userInfoDialog.close()
+    }
+
+    
+}
 
 
 
@@ -264,12 +259,11 @@ updateDateTime();
 // Update the time every minute
 setInterval(updateDateTime, 60000);
 
-buttonShowLogin.addEventListener("click", showLogin);
-buttonShowSignup.addEventListener("click", showSignup);
 profileButton.addEventListener("click", profileShow);
 challengesButton.addEventListener("click", challengesShow);
 tasksButton.addEventListener("click", tasksShow);
 infoButton.addEventListener("click", infoShow);
+dialogInfoBtn.addEventListener("click", setNameEmail);
 englishButton.addEventListener("click", () => {
     localStorage.setItem("language" , "en");
     setLanguage('en');

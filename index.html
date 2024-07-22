@@ -25,26 +25,22 @@
 </head>
 <body>
     <div id="top-bar">
-        <h1 class="center"><i class="fa-solid fa-recycle fa-sm"> </i> <span style="color: black; font-size: 70px;">C</span><span style="color: #4633d1;">-</span>waste</h1>
+        <h1 class="center"><i class="fa-solid fa-recycle fa-sm"> </i> <span style="color: black;">C</span><span style="color: #4633d1;">-</span>waste</h1>
     </div>
 
-    <div id="signUpAndLogin" class="hidden">
-        <h2 class="center" id="headerSignup">Create an account!</h2>
-
-        <input type="text" placeholder="Full Name" class="login-input" id="full-name">
-        <input type="email" id="email" placeholder="Email" class="login-input">
-        <input type="password" id="password" placeholder="Password" class="login-input">
-
-        <button id="buttonSignup" class="login-input">Sign-up</button>
-        <button id="buttonLogin" class="login-input hidden">Login</button>
-
-        
-        <div id="loginText"><p class="center">Already have an account? <button id="buttonShowLogin">Login</button> then</p></div>
-        <div id="signupText" class="hidden"><p class="center">Don't have an account? <button id="buttonShowSignup">Sign-up</button> then</p></div>
-        <button id="buttonGoogle" class="center"><i class="fa-brands fa-google fa-xl" style="color: #4633d1;"></i>  Sign in with Google</button>
-        
-        
-    </div>
+    <dialog  id="user-info-dialog">
+        <form class="center">
+            <h2 class="center">Welcome</h2>
+            <p class="center">Thank you for choosing C-waste. <br> Before continuing enter the your information below.</p>
+            <label for="name">Name:</label>
+            <input type="text" placeholder="Enter your name" name="name" id="name" class="user-info-input center" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="joe@example.com" class="user-info-input center" required>
+            <br>
+            <button class="center" id="info-done-btn" type="submit">Done</button>
+        </form>
+    </dialog>
 
     <main class="" id="main">
         
@@ -63,7 +59,6 @@
                 <button onclick="" class="center lang-btn" id="spanish-button">Español</button>
             </div>
             <hr>
-            <button id="logout" class="">Logout <i class="fa-solid fa-right-to-bracket" style="color: #ededed;"></i></button>
         </div>
 
         <div id="tasks" class="hidden">
