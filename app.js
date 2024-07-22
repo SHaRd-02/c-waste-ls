@@ -18,6 +18,8 @@ const fullNameElement = document.getElementById('full-name');
 const englishButton = document.getElementById('english-button');
 const spanishButton = document.getElementById('spanish-button');
 
+
+
 const translations = {
     en: {
         create_account: "Create an account!",
@@ -103,6 +105,14 @@ const translations = {
     }
 };
 
+
+const language = localStorage.getItem("language");
+if (language){
+    setLanguage(language);
+}
+else{
+    setLanguage('en');
+}
 
 function showLogin() {
     headerSignup.innerText = "Please Login";
@@ -210,12 +220,12 @@ function loadTranslations(lang) {
     document.getElementById('buttonLogin').textContent = currentTranslations.login;
     document.getElementById('loginText').innerHTML = `<p class="center">${currentTranslations.already_have_account} <button id="buttonShowLogin">${currentTranslations.login}</button> then</p>`;
     document.getElementById('buttonGoogle').innerHTML = `<i class="fa-brands fa-google fa-xl" style="color: #4633d1;"></i>  ${currentTranslations.sign_in_google}`;
-    document.querySelector('#profile-nav p').textContent = currentTranslations.profile;
-    document.querySelector('#tasks-nav p').textContent = currentTranslations.tasks;
-    document.querySelector('#challenges-nav p').textContent = currentTranslations.challenges;
-    document.querySelector('#info-nav p').textContent = currentTranslations.info;
+    //document.querySelector('#profile-nav p').textContent = currentTranslations.profile;
+    //document.querySelector('#tasks-nav p').textContent = currentTranslations.tasks;
+    //document.querySelector('#challenges-nav p').textContent = currentTranslations.challenges;
+    //document.querySelector('#info-nav p').textContent = currentTranslations.info;
     document.getElementById('logout').innerHTML = `${currentTranslations.logout} <i class="fa-solid fa-right-to-bracket" style="color: #ededed;"></i>`;
-
+    
     document.getElementById('profile-head').innerText=currentTranslations.profile_head;
     document.getElementById('lang-head').innerText = currentTranslations.lang_head;
     document.getElementById('social-head').innerText = currentTranslations.social_head;
@@ -258,7 +268,13 @@ profileButton.addEventListener("click", profileShow);
 challengesButton.addEventListener("click", challengesShow);
 tasksButton.addEventListener("click", tasksShow);
 infoButton.addEventListener("click", infoShow);
-englishButton.addEventListener("click", () => setLanguage('en'));
-spanishButton.addEventListener("click", () => setLanguage('es'));
+englishButton.addEventListener("click", () => {
+    localStorage.setItem("language" , "en");
+    setLanguage('en');
+});
+spanishButton.addEventListener("click", () => {
+    localStorage.setItem("language" , "es");
+    setLanguage('es');
+});
 
 
