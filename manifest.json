@@ -1,7 +1,7 @@
 {
   "name": "C-waste",
   "short_name": "C-waste",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#38b000",
   "theme_color": "#38b000",
@@ -9,17 +9,17 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/AppImages/android/android-launchericon-192-192.png",   
+      "src": "./AppImages/android/android-launchericon-192-192.png",   
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/AppImages/android/android-launchericon-512-512.png",   
+      "src": "./AppImages/android/android-launchericon-512-512.png",   
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/AppImages/ios/180.png",   
+      "src": "./AppImages/ios/180.png",   
       "sizes": "180x180",
       "type": "image/png"
     }
