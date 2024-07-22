@@ -1,3 +1,5 @@
+import { challenges } from "./challenges";
+
 const buttonShowLogin = document.getElementById('buttonShowLogin');
 const buttonShowSignup = document.getElementById('buttonShowSignup');
 const headerSignup = document.getElementById('headerSignup');
