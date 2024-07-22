@@ -62,7 +62,7 @@ const translations = {
         refuse_summary: "Refuse",
         refuse_text: "Refuse refers to the act of refusing items that don’t help you commit to a sustainable future.",
 
-        add_challenge_button: "Add a Challenge",
+        add_challenge_button: "Add +",
         challenges_head: "Challenges",
         tasks_head:"Tasks",
         tasks_text:"Here are your daily tasks",
@@ -104,7 +104,7 @@ const translations = {
         refuse_summary: "Rechazar",
         refuse_text: "Rechazar se refiere al acto de rechazar artículos que no le ayudan a comprometerse con un futuro sostenible.",
 
-        add_challenge_button: "Añadir desafío",
+        add_challenge_button: "Añadir +",
         challenges_head: "Desafíos",
         tasks_head:"Tareas",
         tasks_text:"Aquí estan tus tareas del día de hoy",

@@ -4,7 +4,8 @@ const urlsToCache = [
     '/index.html',
     '/styles.css',
     '/app.js',
-    '/manifest.json'
+    '/manifest.json',
+    '/challenges.js'
     // Add more URLs to cache as needed
 ];
 
