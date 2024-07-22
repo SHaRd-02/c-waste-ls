@@ -1,4 +1,4 @@
-import { challenges } from "./challenges";
+//import { challenges } from "./challenges";
 
 const buttonShowLogin = document.getElementById('buttonShowLogin');
 const buttonShowSignup = document.getElementById('buttonShowSignup');
