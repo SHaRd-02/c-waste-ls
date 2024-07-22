@@ -347,7 +347,7 @@ hr{
         width: 95%;
     }
 
-    #user-info-dialog > div{
-        width: 90%;
+    #user-info-dialog > form{
+        width: 97%;
     }
 }
