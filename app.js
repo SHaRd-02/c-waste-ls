@@ -27,6 +27,7 @@ const mainElement = document.querySelector('main');
 const challengesList = document.getElementById("challenges-list");
 const tasksList = document.getElementById("tasks-list");
 const addChallengeError = document.getElementById("add-challenge-error-message");
+const refreshBtn = document.getElementById("refresh-btn");
 
 // local storage variables
 const language = localStorage.getItem("language");
@@ -506,6 +507,9 @@ infoButton.addEventListener("click", infoShow);
 addChallengeBtn.addEventListener("click", dialogChallenge);
 closeChallengeDialogBtn.addEventListener("click", closeChallengeDialog);
 submitChallenge.addEventListener("click", addChallenge);
+refreshBtn.addEventListener("click", () =>{
+    location.reload();
+})
 dialogInfoBtn.addEventListener("click", setNameEmail);
 englishButton.addEventListener("click", () => {
     localStorage.setItem("language" , "en");

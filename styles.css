@@ -569,6 +569,21 @@ input#submit-challenge{
     width: 100%;
 }
 
+#refresh-btn{
+    background-color: transparent;
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 32px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 15px;
+    margin-right: 20px;
+    border: none;
+}
+
 @media (max-width: 525px) {
 
     .button-nav{
