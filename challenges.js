@@ -1,4 +1,4 @@
- export const challenges = [
+ export const challengesEs = [
     {
       id: "070001",
       title: "Reducir el uso de plástico",
@@ -175,3 +175,179 @@
     }
   ];
   
+export const challengesEn = [
+  {
+    id: "070001",
+    title: "Reduce Plastic Use",
+    description: "A one-week challenge to reduce disposable plastic use.",
+    duration: 7,
+    url: "",
+    tasks: [
+      {
+        id: "071101-01",
+        title: "Use a Reusable Bag",
+        description: "Use a reusable bag instead of plastic bags when shopping.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "071101-02",
+        title: "Avoid Plastic Bottles",
+        description: "Carry a reusable water bottle.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "071101-03",
+        title: "Reject Single-Use Plastics",
+        description: "Say no to plastic straws, cutlery, and plates.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "071101-04",
+        title: "Buy in Bulk",
+        description: "Buy bulk food and use your own containers.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "071101-05",
+        title: "Use Reusable Containers",
+        description: "Store food in reusable containers instead of plastic wraps.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      }
+    ],
+    status: "incomplete",
+    startdate: "",
+    finaldate: "",
+    progress: 0
+  },
+  {
+    id: "140001",
+    title: "Save Energy at Home",
+    description: "A two-week challenge to reduce energy consumption at home.",
+    duration: 14,
+    url: "",
+    tasks: [
+      {
+        id: "141101-01",
+        title: "Turn Off Lights",
+        description: "Turn off the lights when you leave a room.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "141101-02",
+        title: "Unplug Devices",
+        description: "Unplug electronic devices when not in use.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "141101-03",
+        title: "Use Natural Light",
+        description: "Make use of natural light during the day instead of turning on lights.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "141101-04",
+        title: "Optimize Heating and Cooling",
+        description: "Regulate thermostat settings to save energy.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "141101-05",
+        title: "Wash with Cold Water",
+        description: "Use cold water for laundry whenever possible.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      }
+    ],
+    status: "incomplete",
+    startdate: "",
+    finaldate: "",
+    progress: 0
+  },
+  {
+    id: "300001",
+    title: "Sustainable Eating",
+    description: "A one-month challenge to adopt more sustainable eating habits.",
+    duration: 30,
+    url: "",
+    tasks: [
+      {
+        id: "301101-01",
+        title: "Meal Planning",
+        description: "Plan your meals to avoid food waste.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "301101-02",
+        title: "Buy Local Products",
+        description: "Purchase locally produced foods to reduce carbon footprint.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "301101-03",
+        title: "Reduce Meat Consumption",
+        description: "Incorporate more vegetarian meals into your diet.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "301101-04",
+        title: "Use Reusable Bags",
+        description: "Bring your own reusable bags when shopping.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      },
+      {
+        id: "301101-05",
+        title: "Compost Kitchen Waste",
+        description: "Start composting your kitchen's organic waste.",
+        status: "incomplete",
+        startdate: "",
+        finaldate: "",
+        progress: 0
+      }
+    ],
+    status: "incomplete",
+    startdate: "",
+    finaldate: "",
+    progress: 0
+  }
+];

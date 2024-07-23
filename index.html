@@ -36,14 +36,38 @@
             <input type="text" placeholder="Enter your name" name="name" id="name" class="user-info-input center" required>
             <br>
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="joe@example.com" class="user-info-input center" required>
+            <input type="email" required name="email" id="email" placeholder="joe@example.com" class="user-info-input center">
             <br>
-            <p id="no-user-info"></p>
-            <button class="center" id="info-done-btn" type="submit">Done</button>
+            <p id="no-user-info" style="color: black;"></p>
+            <input class="center" id="info-done-btn" type="submit">
 
         </form>
     </dialog>
+    <dialog id="add-challenge-dialog">
+        <button id="close-challenge-dialog"><i class="fa-solid fa-square-xmark" style="color: #da1507;"></i></button>
+        <h2>Let's add a challenge</h2>
 
+        <form action="" method="">
+
+            <label for="challenge" class="center">Select a challenge</label>
+
+            <select name="challenge" id="challenge" class="center" required>
+                <option value="" disabled selected>Select an option</option>
+                <optgroup label="7 days">
+                    <option value="070001">Reducir el uso de plástico</option>
+                </optgroup>
+                <optgroup label="14 days">
+                    <option value="140001">Ahorro de energía en el hogar</option>
+                </optgroup>
+                <optgroup label="30 days">
+                    <option value="300001">Alimentación sostenible</option>
+                </optgroup>
+            </select>
+
+            <input type="submit" class="center" id="submit-challenge">
+        </form>
+
+    </dialog>
     <main class="" id="main">
         
         <div id="profile" class="hidden">
@@ -158,128 +182,19 @@
                         <i class="fa-solid fa-clock icon-time">  </i> <i id="timeDisplay"></i>
                         <p class=""><i class="fa-regular fa-calendar icon-date"> </i> <i id="dateDisplay"></i></p>
                     </div>
-                    <button class="center" id="add-challenge-button">Add</button>
+                    <button class="" id="add-challenge-button">Add</button>
                     <p class=""> 
                     
                 </section>
             </section>
+            
             <h2 class="center" id="challenges-head">Challenges</h2>
+
+           
             <ul id="challenges-list" class="challenges-list" >
-                <li>
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-rocket fa-2xl " ></i></p>
-                    </div>
-                    <div class="challenges-info">
-                        <p class="challenges-title">Challenge1</p>
-                        <p class="challenges-date">Start date: 7/22/2024</p>
-                        <progress max="100" min="0" class="challenges-progress-bar" value="70">20%</progress>
-                        <details>
-                            <summary>show more</summary>
-                            
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, asperiores. Natus quos qui asperiores 
-                            
-                        </details>
-                    </div>
-                </li>
-                <li>
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-rocket fa-2xl " ></i></p>
-                    </div>
-                    <div class="challenges-info">
-                        <p class="challenges-title">Challenge1</p>
-                        <p class="challenges-date">Start date: 7/22/2024</p>
-                        <progress max="100" min="0" class="challenges-progress-bar" value="70">20%</progress>
-                        <details>
-                            <summary>show more</summary>
-                            
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, asperiores. Natus quos qui asperiores 
-                            
-                        </details>
-                    </div>
-                </li>
-                <li>
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-rocket fa-2xl " ></i></p>
-                    </div>
-                    <div class="challenges-info">
-                        <p class="challenges-title">Challenge1</p>
-                        <p class="challenges-date">Start date: 7/22/2024</p>
-                        <progress max="100" min="0" class="challenges-progress-bar" value="70">20%</progress>
-                        <details>
-                            <summary>show more</summary>
-                            
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, asperiores. Natus quos qui asperiores 
-                            
-                        </details>
-                    </div>
-                </li>
-                <li>
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-rocket fa-2xl " ></i></p>
-                    </div>
-                    <div class="challenges-info">
-                        <p class="challenges-title">Challenge1</p>
-                        <p class="challenges-date">Start date: 7/22/2024</p>
-                        <progress max="100" min="0" class="challenges-progress-bar" value="70">20%</progress>
-                        <details>
-                            <summary>show more</summary>
-                            
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, asperiores. Natus quos qui asperiores 
-                            
-                        </details>
-                    </div>
-                </li>
-                <li>
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-rocket fa-2xl " ></i></p>
-                    </div>
-                    <div class="challenges-info">
-                        <p class="challenges-title">Challenge1</p>
-                        <p class="challenges-date">Start date: 7/22/2024</p>
-                        <progress max="100" min="0" class="challenges-progress-bar" value="70">20%</progress>
-                        <details>
-                            <summary>show more</summary>
-                            
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, asperiores. Natus quos qui asperiores 
-                            
-                        </details>
-                    </div>
-                </li>
-                <li>
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-rocket fa-2xl " ></i></p>
-                    </div>
-                    <div class="challenges-info">
-                        <p class="challenges-title">Challenge1</p>
-                        <p class="challenges-date">Start date: 7/22/2024</p>
-                        <progress max="100" min="0" class="challenges-progress-bar" value="70">20%</progress>
-                        <details>
-                            <summary>show more</summary>
-                            
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, asperiores. Natus quos qui asperiores 
-                            
-                        </details>
-                    </div>
-                </li>
-                <li>
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-rocket fa-2xl " ></i></p>
-                    </div>
-                    <div class="challenges-info">
-                        <p class="challenges-title">Challenge1</p>
-                        <p class="challenges-date">Start date: 7/22/2024</p>
-                        <progress max="100" min="0" class="challenges-progress-bar" value="70">20%</progress>
-                        <details>
-                            <summary>show more</summary>
-                            
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, asperiores. Natus quos qui asperiores 
-                            
-                        </details>
-                    </div>
-                </li>
+                
             </ul>
             <hr>
-            
         </div>
 
         <div id="info" class="">

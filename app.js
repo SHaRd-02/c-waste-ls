@@ -1,4 +1,5 @@
-import { challenges } from "./challenges.js";
+import { challengesEn, challengesEs } from "./challenges.js";
+console.log(challengesEn, challengesEs);
 // DOM variables
 const profileElement = document.getElementById('profile');
 const challengesElement = document.getElementById('challenges');
@@ -17,12 +18,26 @@ const dialogInfoBtn = document.getElementById("info-done-btn");
 const nameElement = document.getElementById("userName");
 const emailElement = document.getElementById("userEmail");
 const noUserInfo = document.getAnimations("no-user-info");
+const addChallengeBtn = document.getElementById("add-challenge-button");
+const addChallengeDialog = document.getElementById("add-challenge-dialog");
+const closeChallengeDialogBtn = document.getElementById("close-challenge-dialog");
+const challenge = document.getElementById("challenge");
+const submitChallenge = document.getElementById("submit-challenge");
+const mainElement = document.querySelector('main');
+const challengesList = document.getElementById("challenges-list");
 
 // local storage variables
 const language = localStorage.getItem("language");
 const username = localStorage.getItem("name");
 const email = localStorage.getItem("email");
 console.log(username, email)
+
+// user variables
+let userChallengesEn = JSON.parse(localStorage.getItem("challengesEn")) || [];
+let userChallengesEs = JSON.parse(localStorage.getItem("challengesEs")) || [];
+let userTasksEn = JSON.parse(localStorage.getItem("userTasksEn")) || [];
+let userTasksEs = JSON.parse(localStorage.getItem("userTasksEs")) || [];
+let userScore = 0;
 
 
 
@@ -239,19 +254,70 @@ function loadTranslations(lang) {
     document.getElementById('tasks-text').innerText=currentTranslations.tasks_text;
 }
 
-function setNameEmail(){
-    if (nameInput.value ==="" && emailInput.value === ""){
-        noUserInfo.innerText = "Please fill the input fields!!!";
-    }else{
+function setNameEmail(event){
+    event.preventDefault()
+    if (nameInput.checkValidity() && emailInput.checkValidity()) {
         localStorage.setItem("name", nameInput.value);
         localStorage.setItem("email", emailInput.value);
-        userInfoDialog.close()
+        userInfoDialog.close();
+    } else {
+        noUserInfo.innerText = "Please enter yout information";
+        // Enfocar el primer campo inválido si la validación falla
+        if (!nameInput.checkValidity()) {
+            nameInput.focus();
+        } else {
+            emailInput.focus();
+        }
     }
+}
 
+function dialogChallenge(){
+    mainElement.classList.toggle('hidden');
+    addChallengeDialog.showModal();
+
+}
+function closeChallengeDialog() {
+    mainElement.classList.toggle('hidden');
+    addChallengeDialog.close();
+}
+
+function addChallenge(){
+    const challengeObj = challengesEn.find((item) => item.id === challenge.value);
+    console.log(`challenge.value = ${challenge.value} `);
+    console.log(`challengeObt = ${challengeObj} `);
+    userChallengesEn.push(challengeObj);
+    localStorage.setItem("challengesEn", (JSON.stringify(userChallengesEn)));
+}
+
+function showChallenges(){
+    challengesList.innerHTML = "";
+    console.log("userChallengesEn:", userChallengesEn); // Debugging output
+    userChallengesEn.filter(obj => obj && obj.title).forEach((object) => {
+        console.log("Processing challenge:", object); // Debugging output
+        challengesList.innerHTML += `
+            <li>
+                <div class="challenges-icons">
+                    <p><i class="fa-solid fa-rocket fa-2xl"></i></p>
+                </div>
+                <div class="challenges-info">
+                    <p class="challenges-title">${object.title}</p>
+                    <p class="challenges-date">Start date: ${object.startdate}</p>
+                    <progress max="100" min="0" class="challenges-progress-bar" value="${object.progress}">20%</progress>
+                    <details>
+                        <summary>show more</summary>
+                        ${object.description}
+                    </details>
+                </div>
+            </li>
+        `;
+    });
     
 }
 
-
+// show user's challenges in html
+console.log(`userChallengesEn =`);
+console.log(userChallengesEn);
+showChallenges();
 
 // Initial update
 updateDateTime();
@@ -263,6 +329,9 @@ profileButton.addEventListener("click", profileShow);
 challengesButton.addEventListener("click", challengesShow);
 tasksButton.addEventListener("click", tasksShow);
 infoButton.addEventListener("click", infoShow);
+addChallengeBtn.addEventListener("click", dialogChallenge);
+closeChallengeDialogBtn.addEventListener("click", closeChallengeDialog);
+submitChallenge.addEventListener("click", addChallenge);
 dialogInfoBtn.addEventListener("click", setNameEmail);
 englishButton.addEventListener("click", () => {
     localStorage.setItem("language" , "en");
