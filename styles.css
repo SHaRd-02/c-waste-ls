@@ -514,6 +514,8 @@ input.task-check-input {
     box-shadow:  9px 9px 20px #c5c5c5,
                  -9px -9px 20px #ffffff;
     margin: 200px auto;
+    padding: 0;
+    overflow: hidden;
 }
 
 #close-challenge-dialog{
@@ -554,7 +556,18 @@ input#submit-challenge{
 }
 
 
-
+#add-challenge-error-message{
+    border: solid 1px white;
+    border-radius: 2px;
+    background-color: rgb(236, 87, 87);
+    color: aliceblue;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 5px;
+    margin: 30px auto;
+    width: 100%;
+}
 
 @media (max-width: 525px) {
 

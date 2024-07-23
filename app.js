@@ -26,6 +26,7 @@ const submitChallenge = document.getElementById("submit-challenge");
 const mainElement = document.querySelector('main');
 const challengesList = document.getElementById("challenges-list");
 const tasksList = document.getElementById("tasks-list");
+const addChallengeError = document.getElementById("add-challenge-error-message");
 
 // local storage variables
 const language = localStorage.getItem("language");
@@ -36,9 +37,12 @@ console.log(username, email)
 // user variables
 let userChallengesEn = JSON.parse(localStorage.getItem("challengesEn")) || [];
 let userChallengesEs = JSON.parse(localStorage.getItem("challengesEs")) || [];
-let userTasksEn = JSON.parse(localStorage.getItem("userTasksEn")) || [];
-let userTasksEs = JSON.parse(localStorage.getItem("userTasksEs")) || [];
+let  todayTasksEn = JSON.parse(localStorage.getItem(" todayTasksEn")) || [];
+let  todayTasksEs = JSON.parse(localStorage.getItem("todayTasksEs")) || [];
 let userScore = 0;
+
+//Date and time variables 
+let currentDate = "";
 
 
 
@@ -215,6 +219,7 @@ function updateDateTime() {
     const formattedTime = `${hours}:${minutes}`;
 
     // Update the HTML content
+    currentDate = formattedDate;
     document.getElementById('dateDisplay').textContent = formattedDate;
     document.getElementById('timeDisplay').textContent = formattedTime;
 }
@@ -256,7 +261,7 @@ function loadTranslations(lang) {
 }
 
 function setNameEmail(event){
-    event.preventDefault()
+    event.preventDefault();
     if (nameInput.checkValidity() && emailInput.checkValidity()) {
         localStorage.setItem("name", nameInput.value);
         localStorage.setItem("email", emailInput.value);
@@ -278,30 +283,57 @@ function dialogChallenge(){
 
 }
 function closeChallengeDialog() {
+    addChallengeError.classList.toggle('hidden');
     mainElement.classList.toggle('hidden');
     addChallengeDialog.close();
 }
 
-function addChallenge(){
-    const challengeObjEn = challengesEn.find((item) => item.id === challenge.value);
-    userChallengesEn.push(challengeObjEn);
-    localStorage.setItem("challengesEn", (JSON.stringify(userChallengesEn)));
+function addChallenge(event) {
+    event.preventDefault();
 
-    const challengeObjEs = challengesEs.find((item) => item.id === challenge.value);
-    userChallengesEs.push(challengeObjEs);
-    localStorage.setItem("challengesEs", (JSON.stringify(userChallengesEs)));
-}
+    const challengeId = challenge.value;
 
-function showChallenges(){
+    // Check if the challenge is already in userChallengesEn
+    const isChallengeEnExists = userChallengesEn.some(item => item.id === challengeId);
+    const isChallengeEsExists = userChallengesEs.some(item => item.id === challengeId);
+
+    if (isChallengeEnExists || isChallengeEsExists) {
+        language === 'es' ? addChallengeError.innerText = "Ya has aceptado ese desafio, favor de escoger otro" : addChallengeError.innerText = "Challenge already accepted, please choose another one";
+        addChallengeError.classList.toggle('hidden');
+        return; // Exit the function if challenge already exists
+    }
+
+    // Find the challenge object from the challengesEn and challengesEs arrays
+    const challengeObjEn = challengesEn.find((item) => item.id === challengeId);
+    const challengeObjEs = challengesEs.find((item) => item.id === challengeId);
+
+    if (challengeObjEn) {
+        challengeObjEn.startdate = currentDate;
+        userChallengesEn.push(challengeObjEn);
+        localStorage.setItem("challengesEn", JSON.stringify(userChallengesEn));
+    }
+
+    if (challengeObjEs) {
+        challengeObjEs.startdate = currentDate;
+        userChallengesEs.push(challengeObjEs);
+        localStorage.setItem("challengesEs", JSON.stringify(userChallengesEs));
+    }
+
+    console.log("Challenge added");
+    closeChallengeDialog();
+    showChallenges();
+};
+
+function showChallenges() {
     challengesList.innerHTML = "";
-    tasksList.innerHTML = ""
-    
-    if (language === "es"){
+    tasksList.innerHTML = ""; // Clear the tasks list
+
+    if (language === "es") {
         console.log("userChallengesEs:", userChallengesEs); // Debugging output
         userChallengesEs.filter(obj => obj && obj.title).forEach((object) => {
             console.log("Processing challenge:", object); // Debugging output
             challengesList.innerHTML += `
-                <li>
+                <li id="${object.id}">
                     <div class="challenges-icons">
                         <p><i class="fa-solid fa-rocket fa-2xl"></i></p>
                     </div>
@@ -317,20 +349,21 @@ function showChallenges(){
                 </li>
             `;
 
-            object.tasks.filter(task => task && task.title).forEach((task) => {
+            // Display tasks from todayTasksEs
+            todayTasksEs.filter(task => task && task.title).forEach((task) => {
                 console.log("Processing task:", task); // Debugging output
                 tasksList.innerHTML += `
-                    <li>
+                    <li id="${task.id}">
                         <div class="challenges-icons">
                             <p><i class="fa-solid fa-flag fa-xl"></i></p>
                         </div>
                         <div class="tasks-info">
-                            <p class="task-title" id=""> ${task.title} reutilizables</p>
-                            <p class="task-challenge" id=""> ${object.title} </p>
+                            <p class="task-title">${task.title}</p>
+                            <p class="task-challenge">${object.title}</p>
                             <details class="task-details">
                                 <summary class="task-summary">mostrar mas</summary>
-                                <p class="task-description" id=""> ${task.description} </p>
-                                <p class="task-description" id="">Status: ${task.status} </p>
+                                <p class="task-description">${task.description}</p>
+                                <p class="task-description">Status: ${task.status}</p>
                             </details>
                         </div>
                         <div class="task-checkbox-div">
@@ -340,13 +373,14 @@ function showChallenges(){
                 `;
             });
         });
-  
-    }else{
+
+    } else {
         console.log("userChallengesEn:", userChallengesEn); // Debugging output
+
         userChallengesEn.filter(obj => obj && obj.title).forEach((object) => {
             console.log("Processing challenge:", object); // Debugging output
             challengesList.innerHTML += `
-                <li>
+                <li id="${object.id}">
                     <div class="challenges-icons">
                         <p><i class="fa-solid fa-rocket fa-2xl"></i></p>
                     </div>
@@ -361,24 +395,26 @@ function showChallenges(){
                     </div>
                 </li>
             `;
-            object.tasks.filter(task => task && task.title).forEach((task) => {
+
+            // Display tasks from todayTasksEn
+            todayTasksEn.filter(task => task && task.title).forEach((task) => {
                 console.log("Processing task:", task); // Debugging output
                 tasksList.innerHTML += `
-                    <li>
+                    <li id="${task.id}">
                         <div class="challenges-icons">
                             <p><i class="fa-solid fa-flag fa-xl"></i></p>
                         </div>
                         <div class="tasks-info">
-                            <p class="task-title" id=""> ${task.title} reutilizables</p>
-                            <p class="task-challenge" id=""> ${object.title} </p>
+                            <p class="task-title">${task.title}</p>
+                            <p class="task-challenge">${object.title}</p>
                             <details class="task-details">
                                 <summary class="task-summary">Show More</summary>
-                                <p class="task-description" id=""> ${task.description} </p>
-                                <p class="task-description" id="">Status: ${task.status} </p>
+                                <p class="task-description">${task.description}</p>
+                                <p class="task-description">Status: ${task.status}</p>
                             </details>
                         </div>
                         <div class="task-checkbox-div">
-                            <input type="checkbox" name="" id="" class="task-check-input">
+                            <input type="checkbox" name="" id="" class="task-check-input" onclick="${registerTaskCompletion(object.id, task.id, object.progress, object.duration)}">
                         </div>
                     </li>
                 `;
@@ -387,11 +423,9 @@ function showChallenges(){
     }
 };
 
-function setTasks(){
-    userChallengesEn.forEach(object => {
-        userTasksEn.push
-    })
-}
+function registerTaskCompletion(challengeId, taskId, challengeProgress, challengeDuration) {
+    return
+};
 
 // show user's challenges in html
 console.log(`userChallengesEn =`);
