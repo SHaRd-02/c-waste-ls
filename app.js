@@ -25,6 +25,7 @@ const challenge = document.getElementById("challenge");
 const submitChallenge = document.getElementById("submit-challenge");
 const mainElement = document.querySelector('main');
 const challengesList = document.getElementById("challenges-list");
+const tasksList = document.getElementById("tasks-list");
 
 // local storage variables
 const language = localStorage.getItem("language");
@@ -282,36 +283,114 @@ function closeChallengeDialog() {
 }
 
 function addChallenge(){
-    const challengeObj = challengesEn.find((item) => item.id === challenge.value);
-    console.log(`challenge.value = ${challenge.value} `);
-    console.log(`challengeObt = ${challengeObj} `);
-    userChallengesEn.push(challengeObj);
+    const challengeObjEn = challengesEn.find((item) => item.id === challenge.value);
+    userChallengesEn.push(challengeObjEn);
     localStorage.setItem("challengesEn", (JSON.stringify(userChallengesEn)));
+
+    const challengeObjEs = challengesEs.find((item) => item.id === challenge.value);
+    userChallengesEs.push(challengeObjEs);
+    localStorage.setItem("challengesEs", (JSON.stringify(userChallengesEs)));
 }
 
 function showChallenges(){
     challengesList.innerHTML = "";
-    console.log("userChallengesEn:", userChallengesEn); // Debugging output
-    userChallengesEn.filter(obj => obj && obj.title).forEach((object) => {
-        console.log("Processing challenge:", object); // Debugging output
-        challengesList.innerHTML += `
-            <li>
-                <div class="challenges-icons">
-                    <p><i class="fa-solid fa-rocket fa-2xl"></i></p>
-                </div>
-                <div class="challenges-info">
-                    <p class="challenges-title">${object.title}</p>
-                    <p class="challenges-date">Start date: ${object.startdate}</p>
-                    <progress max="100" min="0" class="challenges-progress-bar" value="${object.progress}">20%</progress>
-                    <details>
-                        <summary>show more</summary>
-                        ${object.description}
-                    </details>
-                </div>
-            </li>
-        `;
-    });
+    tasksList.innerHTML = ""
     
+    if (language === "es"){
+        console.log("userChallengesEs:", userChallengesEs); // Debugging output
+        userChallengesEs.filter(obj => obj && obj.title).forEach((object) => {
+            console.log("Processing challenge:", object); // Debugging output
+            challengesList.innerHTML += `
+                <li>
+                    <div class="challenges-icons">
+                        <p><i class="fa-solid fa-rocket fa-2xl"></i></p>
+                    </div>
+                    <div class="challenges-info">
+                        <p class="challenges-title">${object.title}</p>
+                        <p class="challenges-date">Fecha de inicio: ${object.startdate}</p>
+                        <progress max="100" min="0" class="challenges-progress-bar" value="${object.progress}">20%</progress>
+                        <details>
+                            <summary>mostrar mas</summary>
+                            ${object.description}
+                        </details>
+                    </div>
+                </li>
+            `;
+
+            object.tasks.filter(task => task && task.title).forEach((task) => {
+                console.log("Processing task:", task); // Debugging output
+                tasksList.innerHTML += `
+                    <li>
+                        <div class="challenges-icons">
+                            <p><i class="fa-solid fa-flag fa-xl"></i></p>
+                        </div>
+                        <div class="tasks-info">
+                            <p class="task-title" id=""> ${task.title} reutilizables</p>
+                            <p class="task-challenge" id=""> ${object.title} </p>
+                            <details class="task-details">
+                                <summary class="task-summary">mostrar mas</summary>
+                                <p class="task-description" id=""> ${task.description} </p>
+                                <p class="task-description" id="">Status: ${task.status} </p>
+                            </details>
+                        </div>
+                        <div class="task-checkbox-div">
+                            <input type="checkbox" name="" id="" class="task-check-input">
+                        </div>
+                    </li>
+                `;
+            });
+        });
+  
+    }else{
+        console.log("userChallengesEn:", userChallengesEn); // Debugging output
+        userChallengesEn.filter(obj => obj && obj.title).forEach((object) => {
+            console.log("Processing challenge:", object); // Debugging output
+            challengesList.innerHTML += `
+                <li>
+                    <div class="challenges-icons">
+                        <p><i class="fa-solid fa-rocket fa-2xl"></i></p>
+                    </div>
+                    <div class="challenges-info">
+                        <p class="challenges-title">${object.title}</p>
+                        <p class="challenges-date">Start date: ${object.startdate}</p>
+                        <progress max="100" min="0" class="challenges-progress-bar" value="${object.progress}">20%</progress>
+                        <details>
+                            <summary>show more</summary>
+                            ${object.description}
+                        </details>
+                    </div>
+                </li>
+            `;
+            object.tasks.filter(task => task && task.title).forEach((task) => {
+                console.log("Processing task:", task); // Debugging output
+                tasksList.innerHTML += `
+                    <li>
+                        <div class="challenges-icons">
+                            <p><i class="fa-solid fa-flag fa-xl"></i></p>
+                        </div>
+                        <div class="tasks-info">
+                            <p class="task-title" id=""> ${task.title} reutilizables</p>
+                            <p class="task-challenge" id=""> ${object.title} </p>
+                            <details class="task-details">
+                                <summary class="task-summary">Show More</summary>
+                                <p class="task-description" id=""> ${task.description} </p>
+                                <p class="task-description" id="">Status: ${task.status} </p>
+                            </details>
+                        </div>
+                        <div class="task-checkbox-div">
+                            <input type="checkbox" name="" id="" class="task-check-input">
+                        </div>
+                    </li>
+                `;
+            });
+        });
+    }
+};
+
+function setTasks(){
+    userChallengesEn.forEach(object => {
+        userTasksEn.push
+    })
 }
 
 // show user's challenges in html
@@ -336,10 +415,12 @@ dialogInfoBtn.addEventListener("click", setNameEmail);
 englishButton.addEventListener("click", () => {
     localStorage.setItem("language" , "en");
     setLanguage('en');
+    location.reload();
 });
 spanishButton.addEventListener("click", () => {
     localStorage.setItem("language" , "es");
     setLanguage('es');
+    location.reload();
 });
 
 
