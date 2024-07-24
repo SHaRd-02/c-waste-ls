@@ -39,7 +39,7 @@ const email = localStorage.getItem("email");
 // user variables
 let userChallengesEn = JSON.parse(localStorage.getItem("challengesEn")) || [];
 let userChallengesEs = JSON.parse(localStorage.getItem("challengesEs")) || [];
-let  todayTasksEn = JSON.parse(localStorage.getItem(" todayTasksEn")) || [];
+let  todayTasksEn = JSON.parse(localStorage.getItem("todayTasksEn")) || [];
 let  todayTasksEs = JSON.parse(localStorage.getItem("todayTasksEs")) || [];
 let userScore = 0;
 
@@ -228,12 +228,14 @@ function addChallenge(event) {
         challengeObjEn.startdate = currentDate;
         userChallengesEn.push(challengeObjEn);
         localStorage.setItem("challengesEn", JSON.stringify(userChallengesEn));
+        console.log('ChallengesEn:', userChallengesEn);
     }
 
     if (challengeObjEs) {
         challengeObjEs.startdate = currentDate;
         userChallengesEs.push(challengeObjEs);
         localStorage.setItem("challengesEs", JSON.stringify(userChallengesEs));
+        console.log('ChallengesEs:', userChallengesEs);
     }
 
     fillTodayTasks(); // Llama a fillTodayTasks después de añadir un nuevo desafío
@@ -246,9 +248,9 @@ function showChallenges() {
     tasksList.innerHTML = ""; // Clear the tasks list
 
     if (language === "es") {
-        console.log("userChallengesEs:", userChallengesEs); // Debugging output
+        //console.log("userChallengesEs:", userChallengesEs); // Debugging output
         userChallengesEs.filter(obj => obj && obj.title).forEach((object) => {
-            console.log("Processing challenge:", object); // Debugging output
+            //console.log("Processing challenge:", object); // Debugging output
             challengesList.innerHTML += `
                 <li id="${object.id}">
                     <div class="challenges-icons">
@@ -270,7 +272,7 @@ function showChallenges() {
         try{
             // Display tasks from todayTasksEs
         todayTasksEs.filter(task => task && task.title).forEach((task) => {
-            console.log("Processing task:", task); // Debugging output
+            //console.log("Processing task:", task); // Debugging output
             tasksList.innerHTML += `
                 <li id="${task.id}">
                     <div class="challenges-icons">
@@ -299,7 +301,7 @@ function showChallenges() {
     } else {
         console.log("userChallengesEn:", userChallengesEn); // Debugging output
         userChallengesEn.filter(obj => obj && obj.title).forEach((object) => {
-            console.log("Processing challenge:", object); // Debugging output
+            //console.log("Processing challenge:", object); // Debugging output
             challengesList.innerHTML += `
                 <li id="${object.id}">
                     <div class="challenges-icons">
@@ -320,7 +322,7 @@ function showChallenges() {
 
         // Display tasks from todayTasksEn
         todayTasksEn.filter(task => task && task.title).forEach((task) => {
-            console.log("Processing task:", task); // Debugging output
+            //console.log("Processing task:", task); // Debugging output
             tasksList.innerHTML += `
                 <li id="${task.id}">
                     <div class="challenges-icons">
