@@ -1,4 +1,5 @@
 import { challengesEn, challengesEs } from "./challenges.js";
+import { translations } from "./translations.js";
 //console.log(challengesEn, challengesEs);
 // DOM variables
 const profileElement = document.getElementById('profile');
@@ -46,92 +47,6 @@ let userScore = 0;
 let currentDate = "";
 let previousDate = localStorage.getItem("previousDate") || "";
 
-
-
-const translations = {
-    en: {
-        create_account: "Create an account!",
-        full_name: "Full Name",
-        email: "Email",
-        password: "Password",
-        sign_up: "Sign-up",
-        login: "Login",
-        already_have_account: "Already have an account?",
-        sign_in_google: "Sign in with Google",
-        profile: "Profile",
-        tasks: "Tasks",
-        challenges: "Challenges",
-        info: "Info",
-        logout: "Logout",
-
-        profile_head: "Profile",
-        name_head: "Name: ",
-        email_head: "Email: ",
-        lang_head: "Select the language",
-        social_head: "Follow us on Social Media",
-
-        r5_head: "What are the 5R's?",
-        r5_info: "The five R's: reduce, reuse, recycle, rethink, and refuse are a great way to implement small changes into your daily life and live more environmentally friendly and conscious.",
-        reduce_summary: "Reduce",
-        reduce_text: "Reduce means to minimize the amount of waste we create. Here are some easy ways to reduce your waste.",
-
-        reuse_summary: "Reuse",
-        reuse_text: "Reuse refers to using items more once. Here are some things you might not have considered to reuse.",
-        recycle_summary: "Recycle",
-        recycle_text: "Recycling means putting a product to a new use instead of throwing it away.",
-        rethink_summary: "Rethink",
-        rethink_text: "Rethink is a more general term that just means to rethink your consumption habits to minimize waste. Here some things to think about to help you live a lifestyle that supports a sustainable future.",
-        refuse_summary: "Refuse",
-        refuse_text: "Refuse refers to the act of refusing items that don’t help you commit to a sustainable future.",
-
-        add_challenge_button: "Add +",
-        challenges_head: "Challenges",
-        tasks_head:"Tasks",
-        tasks_text:"Here are your daily tasks",
-
-
-    },
-    es: {
-        create_account: "¡Crea una cuenta!",
-        full_name: "Nombre completo",
-        email: "Correo electrónico",
-        password: "Contraseña",
-        sign_up: "Registrarse",
-        login: "Iniciar sesión",
-        already_have_account: "¿Ya tienes una cuenta?",
-        sign_in_google: "Iniciar sesión con Google",
-        profile: "Perfil",
-        tasks: "Tareas",
-        challenges: "Desafíos",
-        info: "Info",
-        logout: "Cerrar sesión",
-        
-        profile_head: "Perfil",
-        name_head: "Nombre: ",
-        email_head: "Correo: ",
-        lang_head: "Selecciona el lenguaje",
-        social_head: "Siguenos en Redes Sociales",
-
-        r5_head: "¿Que son las cinco R?",
-        r5_info: "Las cinco R: reducir, reutilizar, reciclar, repensar y rechazar son una excelente manera de implementar pequeños cambios en tu vida diaria y vivir de manera más respetuosa y consciente con el medio ambiente.",
-        reduce_summary: "Reducir",
-        reduce_text: "Reducir significa minimizar la cantidad de residuos que generamos. A continuación se muestran algunas formas sencillas de reducir sus residuos.",
-
-        reuse_summary: "Reutilizar",
-        reuse_text: "Reutilizar se refiere a usar elementos más una vez. Aquí hay algunas cosas que quizás no hayas considerado reutilizar.",
-        recycle_summary: "Reciclar",
-        recycle_text: "Reciclar significa darle un nuevo uso a un producto en lugar de tirarlo.",
-        rethink_summary: "Repensar",
-        rethink_text: "Repensar es un término más general que simplemente significa repensar sus hábitos de consumo para minimizar el desperdicio. Aquí algunas cosas en las que pensar para ayudarle a vivir un estilo de vida que respalde un futuro sostenible.",
-        refuse_summary: "Rechazar",
-        refuse_text: "Rechazar se refiere al acto de rechazar artículos que no le ayudan a comprometerse con un futuro sostenible.",
-
-        add_challenge_button: "Añadir +",
-        challenges_head: "Desafíos",
-        tasks_head:"Tareas",
-        tasks_text:"Aquí estan tus tareas del día de hoy",
-    }
-};
 
 
 
@@ -295,7 +210,7 @@ function addChallenge(event) {
 
     const challengeId = challenge.value;
 
-    // Check if the challenge is already in userChallengesEn
+    // Check if the challenge is already in userChallengesEn or userChallengesEs
     const isChallengeEnExists = userChallengesEn.some(item => item.id === challengeId);
     const isChallengeEsExists = userChallengesEs.some(item => item.id === challengeId);
 
@@ -321,7 +236,7 @@ function addChallenge(event) {
         localStorage.setItem("challengesEs", JSON.stringify(userChallengesEs));
     }
 
-    //console.log("Challenge added");
+    fillTodayTasks(); // Llama a fillTodayTasks después de añadir un nuevo desafío
     closeChallengeDialog();
     showChallenges();
 };
@@ -433,21 +348,18 @@ function registerTaskCompletion(challengeId, taskId, challengeProgress, challeng
     return
 };
 
-function checkDay(){
-    if (previousDate === ""){
+function checkDay() {
+    if (previousDate === "") {
         previousDate = currentDate;
-        localStorage.setItem("previousDate", previousDate)
-        return false
-    }
-
-    else if (previousDate !== currentDate && currentDate !== ""){
-        //falta llamar a la funcion que va a actualizar todayTasks
+        localStorage.setItem("previousDate", previousDate);
+        return false;
+    } else if (previousDate !== currentDate && currentDate !== "") {
         previousDate = currentDate;
-        localStorage.setItem("previousDate", previousDate)
-        return true
-    }
-    else{
-        return false
+        localStorage.setItem("previousDate", previousDate);
+        fillTodayTasks(); // Llama a fillTodayTasks cuando es un nuevo día
+        return true;
+    } else {
+        return false;
     }
 };
 
@@ -488,7 +400,6 @@ function fillTodayTasks() {
 // show user's challenges in html
 //console.log(`userChallengesEn =`);
 //console.log(userChallengesEn);
-fillTodayTasks();
 console.log('todayTasksEn: ',todayTasksEn);
 console.log('todayTasksEs: ', todayTasksEs);
 showChallenges();
