@@ -274,23 +274,26 @@ function showChallenges() {
         todayTasksEs.filter(task => task && task.title).forEach((task) => {
             //console.log("Processing task:", task); // Debugging output
             tasksList.innerHTML += `
-                <li id="${task.id}">
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-flag fa-xl"></i></p>
-                    </div>
-                    <div class="tasks-info">
-                        <p class="task-title">${task.title}</p>
-                        <p class="task-challenge">${task.challengeTitle}</p>
-                        <details class="task-details">
-                            <summary class="task-summary">mostrar mas</summary>
-                            <p class="task-description">${task.description}</p>
-                            <p class="task-description">Status: ${task.status}</p>
-                        </details>
-                    </div>
-                    <div class="task-checkbox-div">
-                        <input type="checkbox" name="" id="" class="task-check-input" onclick="registerTaskCompletion('${task.challengeId}', '${task.id}', ${task.progress}, ${task.duration})">
-                    </div>
-                </li>
+                 <li id="${task.id}">
+                        <div class="challenges-icons">
+                            <p><i class="fa-solid fa-flag fa-xl"></i></p>
+                        </div>
+                        <div class="tasks-info">
+                            <p class="task-title">${task.title}</p>
+                            <p class="task-challenge">${task.challengeTitle}</p>
+                            <details class="task-details">
+                                <summary class="task-summary">mostrar mas</summary>
+                                <p class="task-description">${task.description}</p>
+                                <p class="task-description">Status: ${task.status}</p>
+                            </details>
+                        </div>
+                        <div class="task-checkbox-div">
+                            <input type="checkbox" 
+                                class="task-check-input" 
+                                data-task-id="${task.id}" 
+                                data-object-id="${object.id}">
+                        </div>
+                    </li>
             `;
         });
         }catch(error){
@@ -318,37 +321,97 @@ function showChallenges() {
                     </div>
                 </li>
             `;
+            // Display tasks from todayTasksEn
+            todayTasksEn.filter(task => task && task.title).forEach((task) => {
+                //console.log("Processing task:", task); // Debugging output
+                tasksList.innerHTML += `
+                    <li id="${task.id}">
+                        <div class="challenges-icons">
+                            <p><i class="fa-solid fa-flag fa-xl"></i></p>
+                        </div>
+                        <div class="tasks-info">
+                            <p class="task-title">${task.title}</p>
+                            <p class="task-challenge">${task.challengeTitle}</p>
+                            <details class="task-details">
+                                <summary class="task-summary">show more</summary>
+                                <p class="task-description">${task.description}</p>
+                                <p class="task-description">Status: ${task.status}</p>
+                            </details>
+                        </div>
+                        <div class="task-checkbox-div">
+                            <input type="checkbox" 
+                                class="task-check-input" 
+                                data-task-id="${task.id}" 
+                                data-object-id="${object.id}">
+                        </div>
+                    </li>
+                `;
+            });
         });
 
-        // Display tasks from todayTasksEn
-        todayTasksEn.filter(task => task && task.title).forEach((task) => {
-            //console.log("Processing task:", task); // Debugging output
-            tasksList.innerHTML += `
-                <li id="${task.id}">
-                    <div class="challenges-icons">
-                        <p><i class="fa-solid fa-flag fa-xl"></i></p>
-                    </div>
-                    <div class="tasks-info">
-                        <p class="task-title">${task.title}</p>
-                        <p class="task-challenge">${task.challengeTitle}</p>
-                        <details class="task-details">
-                            <summary class="task-summary">show more</summary>
-                            <p class="task-description">${task.description}</p>
-                            <p class="task-description">Status: ${task.status}</p>
-                        </details>
-                    </div>
-                    <div class="task-checkbox-div">
-                        <input type="checkbox" name="" id="" class="task-check-input" onclick="registerTaskCompletion('${task.challengeId}', '${task.id}', ${task.progress}, ${task.duration})">
-                    </div>
-                </li>
-            `;
-        });
+        
     }
 };
 
-function registerTaskCompletion(challengeId, taskId, challengeProgress, challengeDuration) {
-    return
+function registerTaskCompletion(challengeId, taskId) {
+    console.log("Tarea siendo registrada");
+
+    // Función para actualizar el progreso del desafío
+    const updateChallengeProgress = (challenge, tasksArray, lang) => {
+        if (!challenge) return;
+
+        // Encuentra la tarea dentro de todayTasks
+        const taskIndex = tasksArray.findIndex(task => task.id === taskId);
+        if (taskIndex === -1) return;
+
+        // Elimina la tarea completada de todayTasks
+        tasksArray.splice(taskIndex, 1);
+
+        // Calcula el nuevo progreso
+        const newProgress = Math.min(challenge.progress + (100 / challenge.duration), 100);
+
+        // Verifica si el progreso es 100% o más para marcar el desafío como completado
+        if (newProgress >= 100) {
+            challenge.status = "completed";
+        }
+
+        // Actualiza el progreso del desafío
+        challenge.progress = newProgress;
+
+        // Actualiza el almacenamiento local
+        if (lang === 'en') {
+            localStorage.setItem("todayTasksEn", JSON.stringify(todayTasksEn));
+            localStorage.setItem("challengesEn", JSON.stringify(userChallengesEn));
+        } else {
+            localStorage.setItem("todayTasksEs", JSON.stringify(todayTasksEs));
+            localStorage.setItem("challengesEs", JSON.stringify(userChallengesEs));
+        }
+    };
+
+    // Actualiza el desafío en inglés
+    userChallengesEn.forEach(challenge => {
+        if (challenge.id === challengeId) {
+            updateChallengeProgress(challenge, todayTasksEn, 'en');
+        }
+    });
+
+    // Actualiza el desafío en español
+    userChallengesEs.forEach(challenge => {
+        if (challenge.id === challengeId) {
+            updateChallengeProgress(challenge, todayTasksEs, 'es');
+        }
+    });
+
+    // Refresca la visualización de desafíos
+    showChallenges();
+    console.log("today's tasks");
+    console.log(todayTasksEs);
+    console.log(todayTasksEn);
+    console.log("user challenges");
+    console.log(userChallengesEn);
+    console.log(userChallengesEs);
 };
+
 
 function checkDay() {
     if (previousDate === "") {
@@ -435,4 +498,22 @@ spanishButton.addEventListener("click", () => {
     location.reload();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Selecciona todos los checkboxes
+    const checkboxes = document.querySelectorAll('.task-check-input');
+
+    // Añade un event listener a cada checkbox
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', (event) => {
+            if (event.target.checked) {
+                // Obtiene los valores de data-task-id y data-object-id
+                const taskId = event.target.getAttribute('data-task-id');
+                const objectId = event.target.getAttribute('data-object-id');
+                
+                // Llama a registerTaskCompletion con los IDs
+                registerTaskCompletion(taskId, objectId);
+            }
+        });
+    });
+});
 
