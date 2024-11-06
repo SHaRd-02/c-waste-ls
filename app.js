@@ -29,6 +29,12 @@ const challengesList = document.getElementById("challenges-list");
 const tasksList = document.getElementById("tasks-list");
 const addChallengeError = document.getElementById("add-challenge-error-message");
 const refreshBtn = document.getElementById("refresh-btn");
+//temporary
+const challengeIdInput = document.getElementById('challenge-id-input');
+const taskIdInput= document.getElementById('task-id-input');
+const deleteTaskBtn = document.getElementById('delete-task-btn');
+const tempTabBtn = document.getElementById("placeholder-button");
+const tempTab = document.getElementById("temp-tab");
 
 // local storage variables
 const language = localStorage.getItem("language");
@@ -75,10 +81,12 @@ function profileShow(){
     tasksElement.classList.remove('hidden');
     challengesElement.classList.remove('hidden');
     infoElement.classList.remove('hidden');
+    tempTab.classList.remove('hidden');
 
     tasksElement.classList.add('hidden');
     challengesElement.classList.add('hidden');
     infoElement.classList.add('hidden');
+    tempTab.classList.add('hidden');
 }
 
 function challengesShow(){
@@ -111,9 +119,25 @@ function infoShow(){
     tasksElement.classList.remove('hidden');
     challengesElement.classList.remove('hidden');
     profileElement.classList.remove('hidden');
+    tempTab.classList.remove('hidden');
 
     tasksElement.classList.add('hidden');
     challengesElement.classList.add('hidden');
+    profileElement.classList.add('hidden');
+    tempTab.classList.add('hidden');
+}
+
+function tempShow(){
+    tempTab.classList.remove('hidden');
+
+    tasksElement.classList.remove('hidden');
+    challengesElement.classList.remove('hidden');
+    infoElement.classList.remove('hidden');
+    profileElement.classList.remove('hidden');
+
+    tasksElement.classList.add('hidden');
+    challengesElement.classList.add('hidden');
+    infoElement.classList.add('hidden');
     profileElement.classList.add('hidden');
 }
 
@@ -348,7 +372,7 @@ function showChallenges() {
                 `;
             });
         });
-
+  
         
     }
 };
@@ -365,10 +389,12 @@ function registerTaskCompletion(challengeId, taskId) {
         if (taskIndex === -1) return;
 
         // Elimina la tarea completada de todayTasks
+        console.log(`Eliminando ${taskId}, indice ${taskIndex}`);
         tasksArray.splice(taskIndex, 1);
 
         // Calcula el nuevo progreso
         const newProgress = Math.min(challenge.progress + (100 / challenge.duration), 100);
+        console.log(` nuevo progreso: ${newProgress}`);
 
         // Verifica si el progreso es 100% o más para marcar el desafío como completado
         if (newProgress >= 100) {
@@ -480,6 +506,7 @@ profileButton.addEventListener("click", profileShow);
 challengesButton.addEventListener("click", challengesShow);
 tasksButton.addEventListener("click", tasksShow);
 infoButton.addEventListener("click", infoShow);
+tempTabBtn.addEventListener("click", tempShow);
 addChallengeBtn.addEventListener("click", dialogChallenge);
 closeChallengeDialogBtn.addEventListener("click", closeChallengeDialog);
 submitChallenge.addEventListener("click", addChallenge);
@@ -498,6 +525,12 @@ spanishButton.addEventListener("click", () => {
     location.reload();
 });
 
+deleteTaskBtn.addEventListener('click', () => {
+    const myTask = taskIdInput.value;
+    const myChallenge = challengeIdInput.value;
+    registerTaskCompletion(myTask, myChallenge);
+})
+
 document.addEventListener('DOMContentLoaded', () => {
     // Selecciona todos los checkboxes
     const checkboxes = document.querySelectorAll('.task-check-input');
@@ -512,8 +545,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Llama a registerTaskCompletion con los IDs
                 registerTaskCompletion(taskId, objectId);
+                console.log(`Tarea "${taskId}", de objeto ${objectId}`);
             }
         });
     });
 });
+
+
 
