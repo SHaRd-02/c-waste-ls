@@ -3,7 +3,7 @@
   "short_name": "C-waste",
   "start_url": "./index.html",
   "display": "fullscreen",
-  "background_color": "aliceblue",
+  "background_color": "#f0f8ff",
   "theme_color": "#38b000",
   "description": "App for challenges related to 5 R's of recycling",
   "orientation": "portrait",
