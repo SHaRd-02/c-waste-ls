@@ -173,32 +173,52 @@ function setLanguage(lang) {
 function loadTranslations(lang) {
     const currentTranslations = translations[lang];
 
-   
-    document.getElementById('profile-head').innerText=currentTranslations.profile_head;
+    // General translations
+    document.getElementById('profile-head').innerText = currentTranslations.profile_head;
     document.getElementById('lang-head').innerText = currentTranslations.lang_head;
     document.getElementById('social-head').innerText = currentTranslations.social_head;
     document.getElementById('name-head').innerText = currentTranslations.name_head;
     document.getElementById('email-head').innerText = currentTranslations.email_head;
 
-    document.getElementById('r5-head').innerText=currentTranslations.r5_head;
-    document.getElementById('r5-info').innerText=currentTranslations.r5_info;
-    document.getElementById('reduce-summary').innerText=currentTranslations.reduce_summary;
-    document.getElementById('reduce-text').innerText=currentTranslations.reduce_text;
+    document.getElementById('r5-head').innerText = currentTranslations.r5_head;
+    document.getElementById('r5-info').innerText = currentTranslations.r5_info;
 
-    document.getElementById('reuse-summary').innerText=currentTranslations.reuse_summary;
-    document.getElementById('recycle-summary').innerText=currentTranslations.recycle_summary;
-    document.getElementById('rethink-summary').innerText=currentTranslations.rethink_summary;
-    document.getElementById('refuse-summary').innerText=currentTranslations.refuse_summary;
+    // Section summaries
+    document.getElementById('reduce-summary').innerText = currentTranslations.reduce_summary;
+    document.getElementById('reuse-summary').innerText = currentTranslations.reuse_summary;
+    document.getElementById('recycle-summary').innerText = currentTranslations.recycle_summary;
+    document.getElementById('rethink-summary').innerText = currentTranslations.rethink_summary;
+    document.getElementById('refuse-summary').innerText = currentTranslations.refuse_summary;
 
-    document.getElementById('reuse-text').innerText=currentTranslations.reuse_text;
-    document.getElementById('recycle-text').innerText=currentTranslations.recycle_text;
-    document.getElementById('rethink-text').innerText=currentTranslations.rethink_text;
-    document.getElementById('refuse-text').innerText=currentTranslations.refuse_text;
+    // Section descriptions
+    document.getElementById('reduce-text').innerText = currentTranslations.reduce_text;
+    document.getElementById('reuse-text').innerText = currentTranslations.reuse_text;
+    document.getElementById('recycle-text').innerText = currentTranslations.recycle_text;
+    document.getElementById('rethink-text').innerText = currentTranslations.rethink_text;
+    document.getElementById('refuse-text').innerText = currentTranslations.refuse_text;
 
-    document.getElementById('add-challenge-button').innerText=currentTranslations.add_challenge_button;
-    document.getElementById('challenges-head').innerText=currentTranslations.challenges_head;
-    document.getElementById('tasks-head').innerText=currentTranslations.tasks_head;
-    document.getElementById('tasks-text').innerText=currentTranslations.tasks_text;
+    // General buttons and titles
+    document.getElementById('add-challenge-button').innerText = currentTranslations.add_challenge_button;
+    document.getElementById('challenges-head').innerText = currentTranslations.challenges_head;
+    document.getElementById('tasks-head').innerText = currentTranslations.tasks_head;
+    document.getElementById('tasks-text').innerText = currentTranslations.tasks_text;
+    document.getElementById('temp-title').innerText = currentTranslations.temp_title;
+
+    // Dynamic 5R Challenges and titles
+    const categories = ['reducir', 'reutilizar', 'reciclar', 'repensar', 'rechazar'];
+
+    categories.forEach(category => {
+        // Titles for each category
+        document.getElementById(`temp-${category}-title`).innerText = currentTranslations[`temp_${category}_title`];
+
+        for (let i = 1; i <= 3; i++) {
+            // Tasks
+            document.getElementById(`temp-${category}-${i}`).innerText = currentTranslations[`temp_${category}_${i}`];
+            document.getElementById(`temp-${category}-diff-${i}`).innerText = currentTranslations[`temp_${category}_diff_${i}`];
+            document.getElementById(`temp-${category}-summary-${i}`).innerText = currentTranslations[`temp_${category}_summary_${i}`];
+            document.getElementById(`temp-${category}-info-${i}`).innerText = currentTranslations[`temp_${category}_info_${i}`];
+        }
+    });
 }
 
 function setNameEmail(event){
