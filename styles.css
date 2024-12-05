@@ -597,7 +597,7 @@ input#submit-challenge{
     width: 90%;
     text-align: center;
     font-size: 12px;
-    border: solid 1px rgb(90, 90, 90);
+    border: solid 1px rgb(238, 236, 236);
     margin: 10px auto;
     display: flex;
     flex-direction: row;
@@ -606,7 +606,9 @@ input#submit-challenge{
     border-radius: 20px;
     height: fit-content;
     max-height: 300px;
-    
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-style: normal;
     
 }
 
@@ -616,12 +618,15 @@ input#submit-challenge{
     text-align: left;
     margin: 0;
     margin-left: 20px;
+    
 }
 
 .activities-details > p{
     display: block;
     align-self: flex-start;
-    
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-style: normal;
     text-align: left;
     height: fit-content;
     width: 40%;
@@ -647,12 +652,15 @@ input#submit-challenge{
 }
 
 .activities-summary{
-    color: rgb(101, 162, 219);
+    color: rgb(110, 185, 255);
     font-size: 12px;
     width: 90%;
     align-self: flex-start;
     margin: 0;
     text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .activities-more-info > p{
@@ -685,6 +693,12 @@ input#submit-challenge{
     background-color: #065e06;
     color: #ffffff;
 }
+
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
 @media (max-width: 525px) {
 
