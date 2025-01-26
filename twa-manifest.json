@@ -23,7 +23,7 @@
   "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://c-waste.netlify.app/manifest.json",
+  "webManifestUrl": "https://shard-02.github.io/c-waste-ls/manifest.json",
   "fallbackType": "customtabs",
   "features": {
     "playBilling": {
